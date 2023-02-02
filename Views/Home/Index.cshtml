@@ -1,0 +1,64 @@
+﻿@*@model cloudscribe.Pagination.Models.PagedResult<SearchModel>*@
+@model SearchStackDatabase.Models.SearchModel
+
+
+@using(Html.BeginForm("Index","Home",FormMethod.Post))
+{
+    @Html.TextBoxFor(m => m.searchText)
+
+    <input type ="submit" value="Search" >
+    <br />
+    @if (Model.SearchDetailList != null && Model.SearchDetailList.Count >0)
+    {
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>PostTitle</th>
+                    <th>PostDescription</th>
+                    <th>TotalVotes</th>
+                    <th>TotalAnswers</th>
+                    <th>User</th>
+                    <th>ReputationScore</th>
+                    <th>Badges</th>
+                </tr>
+            </thead>
+            <tbody>
+                @*  @if (Model.SearchDetailList.Count >0 && Model.SearchDetailList != null)
+        {*@
+                @if (Model != null)
+                {
+                    @foreach (var item in Model.SearchDetailList)
+                    {
+                        <tr>
+                            @* <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.UserId</td>
+                        <td>@item.Date</td>*@
+                            <td>@item.PostTitle</td>
+                            <td>@item.PostDescription</td>
+                            <td>@item.TotalVotes</td>
+                            <td>@item.TotalAnswers</td>
+                            <td>@item.User</td>
+                            <td>@item.ReputationScore</td>
+                            <td>@item.Badges</td>
+                        </tr>
+                    }
+                }
+                @*}*@
+            </tbody>
+        </table>
+        
+    }
+    <cs-pager cs-paging-pagenumber="(int)Model.PageNumber" cs-paging-totalitems="(int)Model.TotalItems"
+    cs-paging-pagesize="(int)Model.PageSize" 
+    cs-pagenumber-param = "PageNumber" asp-controller="Home" asp-action="Index"
+        cs-pager-li-current-class="page-item active"
+        cs-pager-li-other-class="page-item"
+        cs-pager-li-non-active-class="page-item disabled"
+        cs-pager-link-current-class="page-link"
+        cs-pager-link-other-class="page-link">
+    </cs-pager>
+
+}
+
+
